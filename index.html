@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+        integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>My digital library</title>
+</head>
+
+<body>
+    <header>
+        <h1>Library</h1>
+        <p>Add a new book to my library</p>
+        <button class="cta-btn" id="open">New Book!</button>
+    </header>
+
+    <div class="containerheader">
+        <div class="grid-header">
+            <strong>Title</strong>
+            <strong>Author</strong>
+            <strong>Pages</strong>
+            <strong>Status</strong>
+        </div>
+    </div>
+
+    <div class="container">
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal-container" id="modal">
+        <div class="modal">
+            <button class="close-btn" id="close">
+                <i class="fa fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h3>Library</h3>
+            </div>
+            <div class="modal-content">
+                <p>Enter your new book information below!</p>
+                <form class="modal-form" id="submit">
+                    <div>
+                        <label for="title">Title</label>
+                        <input type="text" id="title" placeholder="Enter Title" class="form-input">
+                    </div>
+                    <div>
+                        <label for="author">Author</label>
+                        <input type="text" id="author" placeholder="Enter Author" class="form-input">
+                    </div>
+                    <div>
+                        <label for="pages">Pages</label>
+                        <input type="number" id="pages" placeholder="Enter Number of Pages" class="form-input">
+                    </div>
+                    <div class="modal-read">
+                        <label for="checkbox">I read this book!</label>
+                        <input type="checkbox" id="checkbox" name="checkbox" class="checkbox">
+                    </div>
+                    <button class="submit-btn" id="submit-btn" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
