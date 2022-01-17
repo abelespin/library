@@ -4,146 +4,152 @@ const form = document.querySelector('.modal-form');
 
 let myLibrary = [];
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
-
-function addBookToLibrary() { };
-
-addBookToLibrary.prototype.addBookToList = function (book) {
-    const bookDiv = document.createElement('div');
-    bookDiv.classList.add('grid-row')
-
-    const titleS = document.createElement('span')
-    const authorS = document.createElement('span')
-    const pagesS = document.createElement('span')
-    const buttonS = document.createElement('span')
-    const removeS = document.createElement('span')
-
-    titleS.textContent = (`${book.title}`)
-    authorS.textContent = (`${book.author}`)
-    pagesS.textContent = (`${book.pages}`)
-
-    const btnRead = document.createElement('button')
-    // btnRead.classList.add('bookRead')
-    btnRead.textContent = 'read'
-    buttonS.appendChild(btnRead)
-
-    if (book.read == false) {
-        btnRead.classList.add('bookNotRead')
-    } else if (book.read == true) {
-        btnRead.classList.add('bookRead')
-    }
-
-    const deteleBtn = document.createElement('button');
-    deteleBtn.textContent = 'remove'
-    deteleBtn.classList.add('btn-remove')
-    removeS.appendChild(deteleBtn)
-
-
-    // removeS.innerHTML = `<button class="btn-remove">remove</button>`
-
-    container.appendChild(bookDiv);
-
-    bookDiv.appendChild(titleS)
-    bookDiv.appendChild(authorS)
-    bookDiv.appendChild(pagesS)
-    bookDiv.appendChild(buttonS)
-    bookDiv.appendChild(removeS)
-};
-
-addBookToLibrary.prototype.showAlert = function () {
-    alert('Please fill empty book information below')
-}
-
-addBookToLibrary.prototype.deleteBook = function () { };
-
-addBookToLibrary.prototype.clearFields = function () {
-    document.getElementById('title').value = '';
-    document.getElementById('author').value = '';
-    document.getElementById('pages').value = '';
-    document.getElementById('checkbox').checked = false;
-};
-
-addBookToLibrary.prototype.getElementById = function () { };
-
-addBookToLibrary.prototype.deleteBook = function (target) {
-    if (target.className === 'btn-remove') {
-        target.parentElement.parentElement.remove();
-
-        return true;
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
     }
 }
 
-addBookToLibrary.prototype.updateStatus = function (target) {
-    if (target.classList.contains('bookRead')) {
-        target.classList.remove('bookRead')
-        target.classList.add('bookNotRead')
-    } else if (target.classList.contains('bookNotRead')) {
-        target.classList.remove('bookNotRead')
-        target.classList.add('bookRead')
-    }
-}
+class addBookToLibrary {
+    addBookToList = function (book) {
+        const bookDiv = document.createElement('div');
+        bookDiv.classList.add('grid-row')
 
-function Store() { };
+        const titleS = document.createElement('span')
+        const authorS = document.createElement('span')
+        const pagesS = document.createElement('span')
+        const buttonS = document.createElement('span')
+        const removeS = document.createElement('span')
 
-Store.getBooks = function () {
-    if (localStorage.getItem('books') === null) {
-        myLibrary = [];
-    } else {
-        myLibrary = JSON.parse(localStorage.getItem('books'));
-    }
+        titleS.textContent = (`${book.title}`)
+        authorS.textContent = (`${book.author}`)
+        pagesS.textContent = (`${book.pages}`)
 
-    return myLibrary;
-}
+        const btnRead = document.createElement('button')
+        // btnRead.classList.add('bookRead')
+        btnRead.textContent = 'read'
+        buttonS.appendChild(btnRead)
 
-Store.displayBooks = function () {
-    const books = Store.getBooks();
-
-    books.forEach(function (book) {
-        const ui = new addBookToLibrary;
-
-        // add book to UI
-        ui.addBookToList(book);
-    })
-}
-
-Store.addBook = function (book) {
-    const books = Store.getBooks();
-
-    books.push(book)
-
-    localStorage.setItem('books', JSON.stringify(books));
-}
-
-Store.removeBook = function (title) {
-    const books = Store.getBooks();
-
-    books.forEach(function (book, index) {
-        if (book.title === title) {
-            books.splice(index, 1);
+        if (book.read == false) {
+            btnRead.classList.add('bookNotRead')
+        } else if (book.read == true) {
+            btnRead.classList.add('bookRead')
         }
-    });
 
-    localStorage.setItem('books', JSON.stringify(books));
-}
+        const deteleBtn = document.createElement('button');
+        deteleBtn.textContent = 'remove'
+        deteleBtn.classList.add('btn-remove')
+        removeS.appendChild(deteleBtn)
 
-Store.updateBookStatus = function (target) {
-    const books = Store.getBooks();
 
-    const status = books.find(({ title }) => title === target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent)
+        // removeS.innerHTML = `<button class="btn-remove">remove</button>`
 
-    if (status.read === true) {
-        status.read = false
-    } else if (status.read === false) {
-        status.read = true
+        container.appendChild(bookDiv);
+
+        bookDiv.appendChild(titleS)
+        bookDiv.appendChild(authorS)
+        bookDiv.appendChild(pagesS)
+        bookDiv.appendChild(buttonS)
+        bookDiv.appendChild(removeS)
+    };
+
+    showAlert = function () {
+        alert('Please fill empty book information below')
     }
 
-    localStorage.setItem('books', JSON.stringify(books));
-}
+    deleteBook = function () { };
+
+    clearFields = function () {
+        document.getElementById('title').value = '';
+        document.getElementById('author').value = '';
+        document.getElementById('pages').value = '';
+        document.getElementById('checkbox').checked = false;
+    };
+
+    getElementById = function () { };
+
+    deleteBook = function (target) {
+        if (target.className === 'btn-remove') {
+            target.parentElement.parentElement.remove();
+
+            return true;
+        }
+    }
+
+    updateStatus = function (target) {
+        if (target.classList.contains('bookRead')) {
+            target.classList.remove('bookRead')
+            target.classList.add('bookNotRead')
+        } else if (target.classList.contains('bookNotRead')) {
+            target.classList.remove('bookNotRead')
+            target.classList.add('bookRead')
+        }
+    }
+};
+
+
+
+class Store {
+    static getBooks() {
+        if (localStorage.getItem('books') === null) {
+            myLibrary = [];
+        } else {
+            myLibrary = JSON.parse(localStorage.getItem('books'));
+        }
+
+        return myLibrary;
+    }
+
+    static displayBooks() {
+        const books = Store.getBooks();
+
+        books.forEach(function (book) {
+            const ui = new addBookToLibrary;
+
+            // add book to UI
+            ui.addBookToList(book);
+        })
+    }
+
+    static addBook(book) {
+        const books = Store.getBooks();
+
+        books.push(book)
+
+        localStorage.setItem('books', JSON.stringify(books));
+    }
+
+    static removeBook(title) {
+        const books = Store.getBooks();
+
+        books.forEach(function (book, index) {
+            if (book.title === title) {
+                books.splice(index, 1);
+            }
+        });
+
+        localStorage.setItem('books', JSON.stringify(books));
+    }
+
+    static updateBookStatus(target) {
+        const books = Store.getBooks();
+
+        const status = books.find(({ title }) => title === target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent)
+
+        if (status.read === true) {
+            status.read = false
+        } else if (status.read === false) {
+            status.read = true
+        }
+
+        localStorage.setItem('books', JSON.stringify(books));
+    }
+};
+
+
 
 document.addEventListener('DOMContentLoaded', Store.displayBooks);
 
